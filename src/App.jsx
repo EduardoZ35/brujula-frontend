@@ -21,6 +21,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
   const [editing, setEditing] = useState(null)
+  const [toast, setToast] = useState(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -42,19 +43,27 @@ function Dashboard() {
 
   useEffect(() => { load() }, [load])
 
+  function showToast(msg) {
+    setToast(msg)
+    setTimeout(() => setToast(null), 2500)
+  }
+
   async function handleSave(data) {
     if (editing) {
       await updateTransaction(editing.id, data)
+      showToast('Transacción actualizada')
     } else {
       await createTransaction(data)
+      showToast('Transacción guardada')
     }
-    await load()
+    load()
   }
 
   async function handleDelete(tx) {
     if (!confirm(`¿Eliminar "${tx.description || 'esta transacción'}"?`)) return
     await deleteTransaction(tx.id)
-    await load()
+    showToast('Transacción eliminada')
+    load()
   }
 
   function openNew() { setEditing(null); setModalOpen(true) }
@@ -96,6 +105,12 @@ function Dashboard() {
         categories={categories}
         initial={editing}
       />
+
+      {toast && (
+        <div className="fixed bottom-24 left-1/2 -translate-x-1/2 bg-slate-700 text-white text-sm px-4 py-2.5 rounded-xl shadow-lg z-50 animate-fade-in">
+          {toast}
+        </div>
+      )}
     </div>
   )
 }

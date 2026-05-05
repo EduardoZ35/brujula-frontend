@@ -1,7 +1,12 @@
 import { X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
-const EMPTY = { type: 'gasto', amount: '', description: '', category_id: '', date: new Date().toISOString().slice(0, 10), notes: '' }
+function localToday() {
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+const EMPTY = { type: 'gasto', amount: '', description: '', category_id: '', date: localToday(), notes: '' }
 
 export default function TransactionModal({ open, onClose, onSave, categories = [], initial = null }) {
   const [form, setForm] = useState(EMPTY)

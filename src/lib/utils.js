@@ -11,19 +11,20 @@ export function monthLabel(ym) {
 }
 
 export function currentMonth() {
-  return new Date().toISOString().slice(0, 7)
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
 }
 
 export function prevMonth(ym) {
-  const d = new Date(`${ym}-01`)
-  d.setMonth(d.getMonth() - 1)
-  return d.toISOString().slice(0, 7)
+  const [y, m] = ym.split('-').map(Number)
+  const d = new Date(y, m - 2, 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
 }
 
 export function nextMonth(ym) {
-  const d = new Date(`${ym}-01`)
-  d.setMonth(d.getMonth() + 1)
-  return d.toISOString().slice(0, 7)
+  const [y, m] = ym.split('-').map(Number)
+  const d = new Date(y, m, 1)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
 }
 
 export function groupByDate(transactions) {
