@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0f172a"/>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Compass needle -->
+  <polygon points="256,100 276,260 256,280 236,260" fill="white" opacity="0.95"/>
+  <polygon points="256,412 236,252 256,232 276,252" fill="white" opacity="0.4"/>
+  <circle cx="256" cy="256" r="28" fill="white"/>
+  <circle cx="256" cy="256" r="16" fill="#0ea5e9"/>
+  <!-- Cardinal marks -->
+  <rect x="250" y="72" width="12" height="20" rx="6" fill="white"/>
+  <rect x="250" y="420" width="12" height="20" rx="6" fill="white" opacity="0.5"/>
+  <rect x="72" y="250" width="20" height="12" rx="6" fill="white" opacity="0.5"/>
+  <rect x="420" y="250" width="20" height="12" rx="6" fill="white" opacity="0.5"/>
+</svg>
